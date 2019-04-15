@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Navigation from './components/navigation/Navigation';
+import Content from './components/Content';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faLaptopCode, faHome, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faJs, faHtml5, faCss3 } from "@fortawesome/free-brands-svg-icons"
+
+library.add(faLaptopCode, faHome, faSearch, faJs, faHtml5, faCss3, faBars);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="App wrapper">
+        <Navigation></Navigation>
+        <Content></Content>
       </div>
     );
   }
