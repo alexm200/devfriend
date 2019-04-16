@@ -1,0 +1,131 @@
+@import '../_variables.scss';
+
+$topBar-bg-color: $white;
+$btn-toggle-color: $blue2-light;
+$btn-search-color: $blue-light;
+$btn-search-icon-color: $white;
+$dropdown-item-active: $blue-light;
+
+.topBar {
+    height: 4.375rem;
+    background-color:$topBar-bg-color;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.item {
+    position: static;
+    &.mobile {
+        @media (min-width: $break-xsmall) {
+            display: none!important;
+        }   
+    }     
+}
+
+.dropdownMenu {
+    width: calc(100% - 1.5rem);
+    right: .75rem;
+    font-size: .85rem;
+    border: 1px solid #e3e6f0!important;
+    padding: 1rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    left: auto;   
+    @media (min-width: 576px) {
+        width:12rem!important
+    }
+    &.nopadding{
+        padding-left:0rem;
+        padding-right:0rem;
+    }   
+}
+
+.toggleBtn {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%!important;
+    color: $btn-toggle-color;
+    margin-right:1em;
+    text-decoration: none;
+    &:hover {
+        background-color: #eaecf4;
+        color: $btn-toggle-color;
+    }
+    &:focus{
+        box-shadow: none;
+    }
+    @media (min-width: $break-small) {
+        display: none!important;
+    }
+}
+
+.navLink {
+    color: #d1d3e2;
+    background:none;
+    border:none;
+    padding-right:1rem;
+    padding-left:1.5rem;
+    outline:none;
+    &:hover {
+        color: #b7b9cc;
+    }
+    &:focus {
+        outline:none!important;
+    }
+}
+
+.inputSearch {
+    font-size: .85rem;
+    background-color: #f8f9fa!important;
+    border:none;
+}
+
+.formSearch {
+    width: 25rem;   
+    margin-bottom: .5rem!important;
+    margin-top: .5rem!important;
+    max-width: 100%!important;
+    display:none;
+    @media (min-width: $break-xsmall) {
+        display: inline-block!important;
+    }    
+    @media (min-width: $break-small) {
+        margin-left: 1rem;
+    }
+}
+
+.btnSearch {
+    padding: .5rem .75rem;
+    margin-top:-4px;
+    background-color: $btn-search-color;
+    color: $btn-search-icon-color;
+    &:hover{
+        color: $btn-search-icon-color;
+    }
+}
+
+.dropdownItem {
+    display: block;
+    width: 100%;
+    padding: .55rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    .icon{
+        color: #d1d3e2!important;
+        margin-right: .5rem!important; 
+    }
+    &:hover,
+    &:focus {
+        color: #2e2f37;
+        text-decoration: none;
+        background-color: #f8f9fc;
+    }
+    &:active{
+        color:#ffffff;
+        background-color: $dropdown-item-active;
+    }
+}
