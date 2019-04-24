@@ -2,6 +2,7 @@
 
 $btn-primary-color: $blue-light;
 $btn-primary-color-hover: $blue-dark;
+$error-text-color: $red;
 
 .btn-primary {
     background-color: $btn-primary-color!important;
@@ -9,4 +10,13 @@ $btn-primary-color-hover: $blue-dark;
 
 .btn-primary:hover {
     background-color: $btn-primary-color-hover!important;
+}
+
+.error {
+    color: $error-text-color;
+}
+
+.error-offset {
+    margin-top: -0.7rem;
+    margin-left: 0.5rem;
 }

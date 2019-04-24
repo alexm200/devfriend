@@ -9,6 +9,7 @@ import Sql from './Sql';
 import styles from '../../styles/modules/content.module.scss';
 import Login from './Login';
 import Register from './Register';
+import { PrivateRoute } from './components/PrivateRoute';
 
 class Content extends Component {
   render() {
@@ -17,11 +18,11 @@ class Content extends Component {
         <div className={styles.content}>
           <TopBar></TopBar>
           <div className="container-fluid">
-            <Route exact path="/" component={Home} />
-            <Route path="/javascript" component={Javascript} />
-            <Route path="/css" component={Css} />
-            <Route path="/html" component={Html} />
-            <Route path="/sql" component={Sql} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute path="/javascript" component={Javascript} />
+            <PrivateRoute path="/css" component={Css} />
+            <PrivateRoute path="/html" component={Html} />
+            <PrivateRoute path="/sql" component={Sql} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
           </div>          

@@ -19,8 +19,7 @@ class App extends Component {
       <div className="d-flex">
         <Router>
           <Navigation></Navigation>
-          <Content>            
-          </Content>
+          <Content></Content>
         </Router>
       </div>
     );

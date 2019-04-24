@@ -22,7 +22,7 @@ class Login extends Component {
                             Register
                         </button>
                         <hr/>
-                        <div class="text-center">
+                        <div className="text-center">
                             <NavLink className="small" to="/login">Already have an account? Login!</NavLink>
                         </div>                        
                     </form>        
