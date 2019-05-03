@@ -12,7 +12,7 @@ export default function configureStore(history, initialState) {
     //loadingBar: loadingBarReducer
   };
 
-  const middleware = [    
+  const middleware = [
     api,
     ...userMdl
   ];

@@ -7,7 +7,8 @@ export const api = ({dispatch}) => next => action => {
     axios({ 
         method: method,
         url: url,
-        data: action.payload
+        data: action.payload,
+        headers: { 'Content-Type': 'application/json' },
     })
     .then((response) => { dispatch({ type: onSuccess, payload: response.data, meta: data }); })
     .catch((error) => { dispatch({ type: onError, payload: error }); });    
