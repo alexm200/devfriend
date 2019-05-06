@@ -38,8 +38,11 @@ export const userMdl = [
             dispatch(userActions.updatePasswordError(""));
         }
         else if (action.type === userActions.CREATE_USER_REQUEST_SUCCESS) {
-            console.log(action);
-            //dispatch(userActions.updateUser(action.payload));
+            dispatch(userActions.updateUsernameError(""));
+            dispatch(userActions.updatePasswordError(""));
+            dispatch(userActions.updateUsername(""));
+            dispatch(userActions.updatePassword(""));
+            dispatch(userActions.updateRegistrationMessage(`You are registered! {LoginLink} to continue!`));
             //dispatch(hideLoading());
         }
         else if (action.type === userActions.CREATE_USER_REQUEST_ERROR) {

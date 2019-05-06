@@ -1,6 +1,12 @@
 import { userActions } from "../actions/user";
 
-const initialState = { username: '', password: '', usernameError: '', passwordError: '' };
+const initialState = { 
+    username: '', 
+    password: '', 
+    usernameError: '', 
+    passwordError: '',
+    registrationMessage: ''
+};
 
 export const userReducer = (state, action) => {
     state = state || initialState;
@@ -13,7 +19,9 @@ export const userReducer = (state, action) => {
         case userActions.UPDATE_PASSWORD_ERROR:
             return { ...state, passwordError: action.payload.error };            
         case userActions.UPDATE_USERNAME_ERROR:
-            return { ...state, usernameError: action.payload.error };            
+            return { ...state, usernameError: action.payload.error };
+        case userActions.UPDATE_REGISTRATION_MESSAGE:
+            return { ...state, registrationMessage: action.payload.message };             
         case userActions.UPDATE_PASSWORD:
             return { ...state, password: action.payload.password };
         default:

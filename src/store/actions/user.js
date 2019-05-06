@@ -12,6 +12,14 @@ export const userActions = {
     UPDATE_USERNAME_ERROR              : '[user] Update Username Error',
     UPDATE_PASSWORD                    : '[user] Update Password',
     UPDATE_PASSWORD_ERROR              : '[user] Update Password Error',
+    UPDATE_REGISTRATION_MESSAGE        : '[user] Update Registration Message',
+
+    updateRegistrationMessage : (message) => ({
+        type    : userActions.UPDATE_REGISTRATION_MESSAGE,
+        payload : {
+            message : message
+        }
+    }),
 
     updatePasswordError : (error) => ({
         type    : userActions.UPDATE_PASSWORD_ERROR,

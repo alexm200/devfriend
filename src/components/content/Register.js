@@ -19,7 +19,7 @@ class Register extends Component {
         this.props.updatePassword(e.currentTarget.value);        
     }
 
-    render() {        
+    render() {
     return (
         <div className="row justify-content-center">
             <div className="col-lg-3">
@@ -29,8 +29,20 @@ class Register extends Component {
                     </div>
                     <div className="user">
 
-                        <div style={{display: "none"}} className="msg-success">
-                            You are registered! <NavLink to="/login">Login</NavLink> to continue!
+                        <div style={{display: this.props.user.registrationMessage === '' ? "none" : "block"}} className="msg-success">
+                            { 
+                                this.props.user.registrationMessage.includes("{LoginLink}") && this.props.user.registrationMessage.slice(0, this.props.user.registrationMessage.indexOf("{LoginLink}"))
+                            }
+                            {
+                                this.props.user.registrationMessage.includes("{LoginLink}") && <NavLink to="/login">Login</NavLink>
+                            }
+                            { 
+                                this.props.user.registrationMessage.includes("{LoginLink}") &&
+                                this.props.user.registrationMessage.slice(this.props.user.registrationMessage.indexOf("{LoginLink}") + "{LoginLink}".length)
+                            }
+                            {
+                                this.props.user.registrationMessage.includes("{LoginLink}") || this.props.user.registrationMessage
+                            }
                         </div>
 
                         <div className="form-group">
