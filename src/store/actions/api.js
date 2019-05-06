@@ -1,7 +1,6 @@
 export const API_REQUEST = '[api] Api Request';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-const endpoint_url = isDevelopment ? "http://localhost:4000/graphql" : "http://devfriendapi.herokuapp.com/graphql";
+const endpoint_url = process.env.REACT_APP_ENV === 'production' ? "http://devfriendapi.herokuapp.com/graphql" : "http://localhost:4000/graphql";
 
 export const apiRequest = (body, data, onSuccess, onError) => ({
   type: API_REQUEST,
