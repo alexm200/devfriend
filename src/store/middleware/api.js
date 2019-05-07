@@ -4,8 +4,6 @@ import { API_REQUEST } from "../actions/api";
 export const api = ({dispatch}) => next => action => {
   if (action.type === API_REQUEST) {
 
-    console.log(process.env);
-
     const { method, url, data, onSuccess, onError } = action.meta;    
     axios({ 
         method: method,

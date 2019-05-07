@@ -1,21 +1,22 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-//import { loadingBarReducer } from 'react-redux-loading-bar'
+import { loadingBarReducer } from 'react-redux-loading-bar';
 import { userReducer } from './reducers/user';
-//import { notificationReducer } from './reducers/notification';
+import { uiReducer } from './reducers/ui';
 import { api } from "./middleware/api";
-import {  userMdl } from "./middleware/user";
+import { userMdl } from "./middleware/user";
 
 export default function configureStore(history, initialState) {
   const reducers = {
     user: userReducer,
-    //notification: notificationReducer,    
-    //loadingBar: loadingBarReducer
+    ui: uiReducer,
+    loadingBar: loadingBarReducer      
   };
 
   const middleware = [
-    api,
+    api,    
     ...userMdl
   ];
+  
 
   const enhancers = [];
   const isDevelopment = process.env.NODE_ENV === 'development';

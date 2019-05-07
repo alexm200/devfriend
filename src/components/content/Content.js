@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TopBar from '../topbar/TopBar';
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Javascript from './Javascript';
 import Css from './Css';
 import Html from './Html';
@@ -14,17 +14,19 @@ import { PrivateRoute } from './components/PrivateRoute';
 class Content extends Component {
   render() {
     return (
-      <div className={[styles.contentWrapper, "d-flex", "flex-column"].join(" ")}>
+      <div className={`${styles.contentWrapper} d-flex flex-column`}>
         <div className={styles.content}>
-          <TopBar></TopBar>
+          <Route path="/:page?" component={TopBar} />          
           <div className="container-fluid">
-            <PrivateRoute exact path="/" component={Home} />
-            <PrivateRoute path="/javascript" component={Javascript} />
-            <PrivateRoute path="/css" component={Css} />
-            <PrivateRoute path="/html" component={Html} />
-            <PrivateRoute path="/sql" component={Sql} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Switch>
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute path="/javascript" component={Javascript} />
+              <PrivateRoute path="/css" component={Css} />
+              <PrivateRoute path="/html" component={Html} />
+              <PrivateRoute path="/sql" component={Sql} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+            </Switch>
           </div>          
         </div>        
       </div>

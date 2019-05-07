@@ -1,5 +1,7 @@
 export const userActions = {
 
+    LOGOUT_USER_REQUEST                : '[user] Logout Request',
+    LOGOUT_USER                        : '[user] Logout',
     LOGIN_USER_REQUEST                 : '[user] Login Request',
     LOGIN_USER_REQUEST_SUCCESS         : '[user] Login Request Success',
     LOGIN_USER_REQUEST_ERROR           : '[user] Login Request Error',
@@ -8,11 +10,36 @@ export const userActions = {
     CREATE_USER_REQUEST                : '[user] Create Request',
     CREATE_USER_REQUEST_SUCCESS        : '[user] Create Request Success',
     CREATE_USER_REQUEST_ERROR          : '[user] Create Request Error',
-    UPDATE_USERNAME                    : '[user] Update Username',
-    UPDATE_USERNAME_ERROR              : '[user] Update Username Error',
-    UPDATE_PASSWORD                    : '[user] Update Password',
-    UPDATE_PASSWORD_ERROR              : '[user] Update Password Error',
+    UPDATE_REGISTRATION_USERNAME       : '[user] Update Registration Username',
+    UPDATE_REGISTRATION_USERNAME_ERROR : '[user] Update Registration Username Error',
+    UPDATE_REGISTRATION_PASSWORD       : '[user] Update Registration Password',
+    UPDATE_REGISTRATION_PASSWORD_ERROR : '[user] Update Registration Password Error',
     UPDATE_REGISTRATION_MESSAGE        : '[user] Update Registration Message',
+    UPDATE_LOGIN_USERNAME              : '[user] Update Login Username',
+    UPDATE_LOGIN_USERNAME_ERROR        : '[user] Update Login Username Error',
+    UPDATE_LOGIN_PASSWORD              : '[user] Update Login Password',    
+    UPDATE_LOGIN_PASSWORD_ERROR        : '[user] Update Login Password Error',
+    UPDATE_LOGIN_MESSAGE               : '[user] Update Login Message',
+    LOGIN_USER                         : '[user] Login',
+
+    updateLoginMessage : (message) => ({
+        type    : userActions.UPDATE_LOGIN_MESSAGE,
+        payload : {
+            message : message
+        }
+    }),
+
+    loginUser : () => ({
+        type    : userActions.LOGIN_USER
+    }),
+
+    logoutUserRequest : () => ({
+        type    : userActions.LOGOUT_USER_REQUEST
+    }),
+
+    logoutUser : () => ({
+        type    : userActions.LOGOUT_USER
+    }),
 
     updateRegistrationMessage : (message) => ({
         type    : userActions.UPDATE_REGISTRATION_MESSAGE,
@@ -21,29 +48,29 @@ export const userActions = {
         }
     }),
 
-    updatePasswordError : (error) => ({
-        type    : userActions.UPDATE_PASSWORD_ERROR,
+    updateRegistrationPasswordError : (error) => ({
+        type    : userActions.UPDATE_REGISTRATION_PASSWORD_ERROR,
         payload : {
             error : error
         }
     }),
 
-    updatePassword : (password) => ({
-        type    : userActions.UPDATE_PASSWORD,
+    updateRegistrationPassword : (password) => ({
+        type    : userActions.UPDATE_REGISTRATION_PASSWORD,
         payload : {
             password : password
         }
     }),
 
-    updateUsernameError : (error) => ({
-        type    : userActions.UPDATE_USERNAME_ERROR,
+    updateRegistrationUsernameError : (error) => ({
+        type    : userActions.UPDATE_REGISTRATION_USERNAME_ERROR,
         payload : {
             error : error
         }
     }),
 
-    updateUsername : (username) => ({
-        type    : userActions.UPDATE_USERNAME,
+    updateRegistrationUsername : (username) => ({
+        type    : userActions.UPDATE_REGISTRATION_USERNAME,
         payload : {
             username : username
         }
@@ -65,8 +92,40 @@ export const userActions = {
         }
     }),
 
-    loginUserRequest : () => ({
-        type    : userActions.LOGIN_USER_REQUEST
+    updateLoginUsername : (username) => ({
+        type    : userActions.UPDATE_LOGIN_USERNAME,
+        payload : {
+            username : username
+        }
+    }),
+
+    updateLoginUsernameError : (error) => ({
+        type    : userActions.UPDATE_LOGIN_USERNAME_ERROR,
+        payload : {
+            error : error
+        }
+    }),    
+
+    updateLoginPassword : (password) => ({
+        type    : userActions.UPDATE_LOGIN_PASSWORD,
+        payload : {
+            password : password
+        }
+    }),
+
+    updateLoginPasswordError : (error) => ({
+        type    : userActions.UPDATE_LOGIN_PASSWORD_ERROR,
+        payload : {
+            error : error
+        }
+    }),    
+
+    loginUserRequest : (username, password) => ({
+        type    : userActions.LOGIN_USER_REQUEST,
+        payload: { 
+            username    : username, 
+            password    : password 
+        }        
     }),
 
     updateUser : (data) => ({

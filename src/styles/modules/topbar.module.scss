@@ -129,3 +129,13 @@ $dropdown-item-active: $blue-light;
         background-color: $dropdown-item-active;
     }
 }
+
+.label {
+    color: #858796!important;
+    font-size: 80%;
+    font-weight: 400;
+    margin-right: .5rem!important;
+    @media (max-width: $break-medium) {
+        display: none;
+    }    
+}
