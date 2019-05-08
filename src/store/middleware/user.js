@@ -30,7 +30,16 @@ export const userMdl = [
             }
 
             dispatch(showLoading());
-            dispatch(apiRequest(gql_user.createUser(action.payload.username, action.payload.password), null, userActions.CREATE_USER_REQUEST_SUCCESS, userActions.CREATE_USER_REQUEST_ERROR));
+            dispatch(apiRequest(gql_user.getUserByUsername(action.payload.username), action.payload, userActions.GET_USER_REQUEST_SUCCESS, userActions.GET_USER_REQUEST_ERROR));            
+        }
+        else if (action.type === userActions.GET_USER_REQUEST_SUCCESS) {            
+            if (action.payload.data.userByUsername != null){
+                dispatch(userActions.updateRegistrationMessage("Username already exists!", "error"));
+                dispatch(hideLoading());
+            }
+            else{
+                dispatch(apiRequest(gql_user.createUser(action.meta.username, action.meta.password), null, userActions.CREATE_USER_REQUEST_SUCCESS, userActions.CREATE_USER_REQUEST_ERROR));
+            }                                    
         }
         else if (action.type === userActions.UPDATE_REGISTRATION_USERNAME) {
             dispatch(userActions.updateRegistrationUsernameError(""));
@@ -43,11 +52,11 @@ export const userMdl = [
             dispatch(userActions.updateRegistrationPasswordError(""));
             dispatch(userActions.updateRegistrationUsername(""));
             dispatch(userActions.updateRegistrationPassword(""));
-            dispatch(userActions.updateRegistrationMessage(`You are registered! {LoginLink} to continue!`));
+            dispatch(userActions.updateRegistrationMessage(`You are registered! {LoginLink} to continue!`, "success"));
             dispatch(hideLoading());
         }
-        else if (action.type === userActions.CREATE_USER_REQUEST_ERROR) {
-            dispatch(userActions.updateRegistrationMessage("Unexpected error occured!"));
+        else if ((action.type === userActions.CREATE_USER_REQUEST_ERROR) || (action.type === userActions.GET_USER_REQUEST_ERROR)) {            
+            dispatch(userActions.updateRegistrationMessage("Unexpected error occured!", "error"));
             dispatch(hideLoading());        
         }   
 
@@ -61,6 +70,10 @@ export const userMdl = [
 
         if (action.type === userActions.LOGIN_USER_REQUEST) {
             
+            dispatch(userActions.updateLoginMessage(""));
+            dispatch(userActions.updateLoginUsernameError(""));
+            dispatch(userActions.updateLoginPasswordError(""));
+
             let isError = false;
             
             if (action.payload.username.trim() === ''){
@@ -78,12 +91,12 @@ export const userMdl = [
             }
 
             dispatch(showLoading());
-            dispatch(apiRequest(gql_user.getUser(action.payload.username, action.payload.password), null, userActions.LOGIN_USER_REQUEST_SUCCESS, userActions.LOGIN_USER_REQUEST_ERROR));            
+            dispatch(apiRequest(gql_user.getUser(action.payload.username, action.payload.password), action.payload, userActions.LOGIN_USER_REQUEST_SUCCESS, userActions.LOGIN_USER_REQUEST_ERROR));            
         }
-        else if (action.type === userActions.UPDATE_LOGIN_USERNAME) {
+        else if (action.type === userActions.UPDATE_LOGIN_USERNAME) {            
             dispatch(userActions.updateLoginUsernameError(""));
         }
-        else if (action.type === userActions.UPDATE_LOGIN_PASSWORD) {
+        else if (action.type === userActions.UPDATE_LOGIN_PASSWORD) {            
             dispatch(userActions.updateLoginPasswordError(""));
         }
         else if (action.type === userActions.LOGIN_USER_REQUEST_SUCCESS) {            
@@ -91,19 +104,25 @@ export const userMdl = [
             dispatch(userActions.updateLoginPasswordError(""));
             dispatch(userActions.updateLoginUsername(""));
             dispatch(userActions.updateLoginPassword(""));
-            
-            if (action.payload.data.user != null){
-                localStorage.setItem("user", action.payload.data.user._id);
+            dispatch(userActions.updateLoginMessage(""));
+
+            if (action.payload.data.user != null){                
+                if (action.meta.rememberMe){
+                    localStorage.setItem("user", action.payload.data.user._id);
+                }
+                else{
+                    sessionStorage.setItem("user", action.payload.data.user._id);
+                }
+                dispatch(userActions.loginUser());
             }
             else{
-                dispatch(userActions.updateLoginMessage("Incorrect Username/Password!"));
+                dispatch(userActions.updateLoginMessage("Incorrect Username/Password!", "error"));
             }
-
-            dispatch(userActions.loginUser());
+            
             dispatch(hideLoading());            
         }
         else if (action.type === userActions.LOGIN_USER_REQUEST_ERROR) {
-            dispatch(userActions.updateLoginMessage("Unexpected error occured!"));
+            dispatch(userActions.updateLoginMessage("Unexpected error occured!", "error"));
             dispatch(hideLoading());        
         }    
 
@@ -118,6 +137,7 @@ export const userMdl = [
         if (action.type === userActions.LOGOUT_USER_REQUEST) {
             
             localStorage.removeItem("user");
+            sessionStorage.removeItem("user");
             dispatch(userActions.logoutUser());
         } 
 

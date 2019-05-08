@@ -6,11 +6,13 @@ const initialState = {
     registrationUsername: '',
     registrationPassword: '', 
     registrationMessage: '',
+    registrationMessageType: '',
     loginUsername: '',
     loginPassword: '',
     loginUsernameError: '',
     loginPasswordError: '',
     loginMessage: '',
+    loginMessageType: '',
     isLoggedIn: false,
     isLoggedOut: false
 };
@@ -39,7 +41,7 @@ export const userReducer = (state, action) => {
             return { ...state, registrationUsernameError: action.payload.error };
 
         case userActions.UPDATE_REGISTRATION_MESSAGE:
-            return { ...state, registrationMessage: action.payload.message };             
+            return { ...state, registrationMessage: action.payload.message, registrationMessageType: action.payload.type };             
 
         case userActions.UPDATE_REGISTRATION_PASSWORD:
             return { ...state, registrationPassword: action.payload.password };
@@ -57,7 +59,7 @@ export const userReducer = (state, action) => {
             return { ...state, loginPasswordError: action.payload.error }; 
 
         case userActions.UPDATE_LOGIN_MESSAGE:
-            return { ...state, loginMessage: action.payload.message };  
+            return { ...state, loginMessage: action.payload.message, loginMessageType: action.payload.type };  
 
         default:
             return state;

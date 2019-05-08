@@ -21,11 +21,14 @@ export const userActions = {
     UPDATE_LOGIN_PASSWORD_ERROR        : '[user] Update Login Password Error',
     UPDATE_LOGIN_MESSAGE               : '[user] Update Login Message',
     LOGIN_USER                         : '[user] Login',
+    GET_USER_REQUEST_SUCCESS           : '[user] Get Request Success',
+    GET_USER_REQUEST_ERROR             : '[user] Get Request Error',
 
-    updateLoginMessage : (message) => ({
+    updateLoginMessage : (message, type) => ({
         type    : userActions.UPDATE_LOGIN_MESSAGE,
         payload : {
-            message : message
+            message : message,
+            type    : type
         }
     }),
 
@@ -41,10 +44,11 @@ export const userActions = {
         type    : userActions.LOGOUT_USER
     }),
 
-    updateRegistrationMessage : (message) => ({
+    updateRegistrationMessage : (message, type) => ({
         type    : userActions.UPDATE_REGISTRATION_MESSAGE,
         payload : {
-            message : message
+            message : message,
+            type    : type
         }
     }),
 
@@ -120,11 +124,12 @@ export const userActions = {
         }
     }),    
 
-    loginUserRequest : (username, password) => ({
+    loginUserRequest : (username, password, rememberMe) => ({
         type    : userActions.LOGIN_USER_REQUEST,
         payload: { 
             username    : username, 
-            password    : password 
+            password    : password,
+            rememberMe  : rememberMe
         }        
     }),
 

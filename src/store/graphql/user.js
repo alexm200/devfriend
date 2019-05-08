@@ -18,7 +18,16 @@ export const gql_user = {
                 }
             }`,
         variables: null
-    }),    
+    }),  
+    getUserByUsername: (username) => ({ 
+        query: gql`
+            query {
+                userByUsername (username: "${username}") {
+                    _id
+                }
+            }`,
+        variables: null
+    }),      
     createUser: (username, password) => ({
         query: gql`
             mutation createUser($user: CreateUserInput) {

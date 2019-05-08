@@ -1,7 +1,8 @@
 import { uiActions } from "../actions/ui";
 
 const initialState = {         
-    isAccountOptionsOpen: false,    
+    isAccountOptionsOpen: false,
+    isLoginRememberMeChecked: false
 };
 
 export const uiReducer = (state, action) => {
@@ -14,6 +15,9 @@ export const uiReducer = (state, action) => {
 
         case uiActions.CLOSE_ACCOUNT_OPTIONS:
             return { ...state, isAccountOptionsOpen: false };
+
+        case uiActions.UPDATE_LOGIN_REMEMBER_ME:
+            return { ...state, isLoginRememberMeChecked: action.payload.checked };
 
         default:
             return state;
