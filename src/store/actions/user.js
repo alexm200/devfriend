@@ -2,14 +2,10 @@ export const userActions = {
 
     LOGOUT_USER_REQUEST                : '[user] Logout Request',
     LOGOUT_USER                        : '[user] Logout',
-    LOGIN_USER_REQUEST                 : '[user] Login Request',
-    LOGIN_USER_REQUEST_SUCCESS         : '[user] Login Request Success',
-    LOGIN_USER_REQUEST_ERROR           : '[user] Login Request Error',
+    LOGIN_USER_REQUEST                 : '[user] Login Request',        
     UPDATE_USER                        : '[user] Update',
     CREATE_USER                        : '[user] Create',
-    CREATE_USER_REQUEST                : '[user] Create Request',
-    CREATE_USER_REQUEST_SUCCESS        : '[user] Create Request Success',
-    CREATE_USER_REQUEST_ERROR          : '[user] Create Request Error',
+    CREATE_USER_REQUEST                : '[user] Create Request',        
     UPDATE_REGISTRATION_USERNAME       : '[user] Update Registration Username',
     UPDATE_REGISTRATION_USERNAME_ERROR : '[user] Update Registration Username Error',
     UPDATE_REGISTRATION_PASSWORD       : '[user] Update Registration Password',
@@ -21,8 +17,6 @@ export const userActions = {
     UPDATE_LOGIN_PASSWORD_ERROR        : '[user] Update Login Password Error',
     UPDATE_LOGIN_MESSAGE               : '[user] Update Login Message',
     LOGIN_USER                         : '[user] Login',
-    GET_USER_REQUEST_SUCCESS           : '[user] Get Request Success',
-    GET_USER_REQUEST_ERROR             : '[user] Get Request Error',
 
     updateLoginMessage : (message, type) => ({
         type    : userActions.UPDATE_LOGIN_MESSAGE,

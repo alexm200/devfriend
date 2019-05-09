@@ -16,7 +16,7 @@ class Content extends Component {
     return (
       <div className={`${styles.contentWrapper} d-flex flex-column`}>
         <div className={styles.content}>
-          <Route path="/:page?" component={TopBar} />          
+          <Route path="/:page?" component={TopBar} />
           <div className="container-fluid">
             <Switch>
               <PrivateRoute exact path="/" component={Home} />

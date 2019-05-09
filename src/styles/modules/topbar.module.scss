@@ -10,7 +10,7 @@ $dropdown-item-active: $blue-light;
     height: 4.375rem;
     background-color:$topBar-bg-color;
     margin-bottom: 1.5rem;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .item {

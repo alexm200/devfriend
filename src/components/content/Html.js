@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Title from './Title';
+import Title from './components/Title';
 
 class Html extends Component {
   render() {

@@ -2,21 +2,22 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { userReducer } from './reducers/user';
 import { uiReducer } from './reducers/ui';
-import { api } from "./middleware/api";
+import { cardReducer } from './reducers/card';
 import { userMdl } from "./middleware/user";
+import { cardMdl } from "./middleware/card";
 
 export default function configureStore(history, initialState) {
   const reducers = {
     user: userReducer,
+    card: cardReducer,
     ui: uiReducer,
     loadingBar: loadingBarReducer      
   };
 
-  const middleware = [
-    api,    
-    ...userMdl
+  const middleware = [    
+    ...userMdl,
+    ...cardMdl
   ];
-  
 
   const enhancers = [];
   const isDevelopment = process.env.NODE_ENV === 'development';

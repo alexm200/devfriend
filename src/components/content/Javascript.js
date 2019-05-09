@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Title from './Title';
+import { utils } from '../../utils';
+import Template from './components/Template';
 
 class Javascript extends Component {
-  render() {
+
+  render() {    
     return (
-      <div>
-        <Title text="Javascript"></Title>      
-      </div>
+      <Template category={utils.Category.Javascript}></Template>
     );
   }
 }
