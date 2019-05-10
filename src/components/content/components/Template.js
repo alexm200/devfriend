@@ -15,12 +15,12 @@ class Template extends Component {
   render() {    
     return (
       <div>
-        <Title text={this.props.category}></Title>
+        <Title category={this.props.category}></Title>
 
         <div className="row">
           {
             this.props.cards.map((i)=> {
-              return <Card key={i._id} title={i.title} text={i.text}></Card>              
+              return <Card key={i._id} id={i._id} title={i.title} text={i.text}></Card>              
             })
           }
         </div>

@@ -7,11 +7,11 @@ import Navigation from './components/navigation/Navigation';
 import Content from './components/content/Content';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faLaptopCode, faHome, faSearch, faBars, faDatabase, faUser, faSignOutAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faLaptopCode, faHome, faSearch, faBars, faDatabase, faUser, faSignOutAlt, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faJs, faHtml5, faCss3 } from "@fortawesome/free-brands-svg-icons"
 import LoadingBar from 'react-redux-loading-bar';
 
-library.add(faLaptopCode, faHome, faSearch, faJs, faHtml5, faCss3, faBars, faDatabase, faUser, faSignOutAlt, faPlus);
+library.add(faLaptopCode, faHome, faSearch, faJs, faHtml5, faCss3, faBars, faDatabase, faUser, faSignOutAlt, faPlus, faTimes);
 
 class App extends Component {
   render() {

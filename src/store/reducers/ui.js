@@ -2,7 +2,8 @@ import { uiActions } from "../actions/ui";
 
 const initialState = {         
     isAccountOptionsOpen: false,
-    isLoginRememberMeChecked: false
+    isLoginRememberMeChecked: false,
+    notifications: []
 };
 
 export const uiReducer = (state, action) => {
@@ -18,6 +19,21 @@ export const uiReducer = (state, action) => {
 
         case uiActions.UPDATE_LOGIN_REMEMBER_ME:
             return { ...state, isLoginRememberMeChecked: action.payload.checked };
+
+        case uiActions.SHOW_NOTIFICATION:
+            return { ...state, 
+                notifications: [
+                    { message: action.payload.message, type: action.payload.type },
+                    ...state.notifications
+                ] 
+            };
+
+        case uiActions.HIDE_NOTIFICATION:
+            return { ...state, 
+                notifications: [
+                    ...state.notifications.slice(0, state.notifications.length - 1)                     
+                ] 
+            };
 
         default:
             return state;

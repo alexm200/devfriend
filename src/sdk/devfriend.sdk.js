@@ -87,6 +87,29 @@ export default class DevFriendSdk {
         });
     }
 
+    createCard = (user_id, category, title, text) => {
+        return this.api.send({
+            query: gql`
+                    mutation createCard($card: CreateCardInput) {
+                        createCard(card: $card) {
+                            _id,
+                            user_id,
+                            category,
+                            title,
+                            text
+                        }
+                    }`,
+            variables: { 
+                card: {                    
+                    user_id     : user_id, 
+                    category    : category,
+                    title       : title,
+                    text        : text
+                } 
+            }
+        });
+    }
+
     getCards = (user_id, category) => { 
         return this.api.send({
             query: gql`
@@ -95,13 +118,29 @@ export default class DevFriendSdk {
                         user_id : "${user_id}",
                         category: "${category}"
                     ) {    	
-    	                _id,    	
+    	                _id,
+                        user_id,
+                        category,
     	                title,
     	                text
                     }
                 }`,
             variables: null
         });
-    }     
+    }
+
+    deleteCard = (_id) => {
+        return this.api.send({
+            query: gql`
+                    mutation deleteCard($id: String!) {
+                        deleteCard(_id: $id) {
+                            _id
+                        }
+                    }`,
+            variables: { 
+                id: _id
+            }
+        });
+    }
 
 }

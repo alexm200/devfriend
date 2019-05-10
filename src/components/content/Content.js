@@ -10,6 +10,7 @@ import styles from '../../styles/modules/content.module.scss';
 import Login from './Login';
 import Register from './Register';
 import { PrivateRoute } from './components/PrivateRoute';
+import Notification from './components/Notification';
 
 class Content extends Component {
   render() {
@@ -17,7 +18,8 @@ class Content extends Component {
       <div className={`${styles.contentWrapper} d-flex flex-column`}>
         <div className={styles.content}>
           <Route path="/:page?" component={TopBar} />
-          <div className="container-fluid">
+          <div className="container-fluid">                        
+            <Notification></Notification>
             <Switch>
               <PrivateRoute exact path="/" component={Home} />
               <PrivateRoute path="/javascript" component={Javascript} />

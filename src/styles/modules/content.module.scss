@@ -11,3 +11,18 @@
     width: 100%;
     overflow-x: hidden;
 }
+
+.cardIcon {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    font-size:1.2rem;
+    color: $blue-light;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;    
+    &:hover{
+        color: $blue-dark;
+    }
+}

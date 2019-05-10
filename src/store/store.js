@@ -5,6 +5,7 @@ import { uiReducer } from './reducers/ui';
 import { cardReducer } from './reducers/card';
 import { userMdl } from "./middleware/user";
 import { cardMdl } from "./middleware/card";
+import { uiMdl } from "./middleware/ui";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -16,7 +17,8 @@ export default function configureStore(history, initialState) {
 
   const middleware = [    
     ...userMdl,
-    ...cardMdl
+    ...cardMdl,
+    ...uiMdl
   ];
 
   const enhancers = [];
