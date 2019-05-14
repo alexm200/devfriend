@@ -87,7 +87,7 @@ export default class DevFriendSdk {
         });
     }
 
-    createCard = (user_id, category, title, text) => {
+    createCard = (user_id, category, title, text, date_created) => {            
         return this.api.send({
             query: gql`
                     mutation createCard($card: CreateCardInput) {
@@ -96,15 +96,17 @@ export default class DevFriendSdk {
                             user_id,
                             category,
                             title,
-                            text
+                            text,
+                            date_created
                         }
                     }`,
             variables: { 
                 card: {                    
-                    user_id     : user_id, 
-                    category    : category,
-                    title       : title,
-                    text        : text
+                    user_id         : user_id, 
+                    category        : category,
+                    title           : title,
+                    text            : text,
+                    date_created    : date_created
                 } 
             }
         });
@@ -122,7 +124,8 @@ export default class DevFriendSdk {
                         user_id,
                         category,
     	                title,
-    	                text
+    	                text,
+                        date_created
                     }
                 }`,
             variables: null
@@ -142,5 +145,25 @@ export default class DevFriendSdk {
             }
         });
     }
+
+    updateCard = (_id, card) => {
+        return this.api.send({
+            query: gql`
+                    mutation updateCard($id: String!, $card: UpdateCardInput!) {
+                        updateCard(_id: $id, card: $card) {
+                            _id,
+                            user_id,
+                            category,
+                            title,
+                            text,
+                            date_created
+                        }
+                    }`,
+            variables: {
+                id: _id,
+                card: card 
+            }
+        });
+    }    
 
 }

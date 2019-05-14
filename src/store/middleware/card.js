@@ -42,14 +42,14 @@ export const cardMdl = [
 
         if (action.type === cardActions.CREATE_CARD_REQUEST) {
             
-            dispatch(showLoading());
-                        
-            sdk.createCard(action.payload.user_id, action.payload.category, action.payload.title, action.payload.text)
+            dispatch(showLoading());                    
+
+            sdk.createCard(action.payload.user_id, action.payload.category, action.payload.title, action.payload.text, action.payload.date_created)
             .then((data) => {
                 
-                const { _id, user_id, category, text, title } = data.createCard;                
+                const { _id, user_id, category, text, title, date_created } = data.createCard;                
 
-                dispatch(cardActions.addCard(_id, user_id, category, text, title));
+                dispatch(cardActions.addCard(_id, user_id, category, title, text, date_created));
                 dispatch(hideLoading());
                                 
             })
@@ -90,4 +90,27 @@ export const cardMdl = [
 
     }, 
     
+    /*---------------------
+        Update
+    -----------------------*/
+    ({dispatch}) => next => action => {
+        next(action);
+
+        if (action.type === cardActions.UPDATE_CARD_REQUEST) {
+            
+            dispatch(showLoading());
+
+            sdk.updateCard(action.payload._id, action.payload.card)
+            .then((data) => {                                
+                dispatch(hideLoading());
+            })
+            .catch(() => {
+                dispatch(uiActions.showNotification("Unexpected error occured! Card could not be updated!", "error"));
+                dispatch(hideLoading());
+            });
+
+        }        
+
+    }, 
+
 ]

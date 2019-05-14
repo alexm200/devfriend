@@ -26,3 +26,34 @@
         color: $blue-dark;
     }
 }
+
+.created {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.5rem;
+    text-align: right;
+    border-top: 1px dotted #e5e5e5;
+    padding-top: 1rem;    
+}
+
+.cardHeader {
+    .noTextbox {
+        color: #007bff!important;
+        font-weight: 700!important;        
+    }    
+}
+
+.cardBody {
+    .noTextbox {
+        resize: none;
+        min-height:70px;
+        overflow:hidden;
+    }
+}
+
+.noTextbox {
+    border: 0;
+    background: transparent;
+    outline: none;
+    width: 100%;
+}

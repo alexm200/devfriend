@@ -12,7 +12,7 @@ class Notification extends Component {
         <div>
             {
                 this.props.ui.notifications.map((i, index) => {                    
-                    return <div key={index} className={`notification ${i.type === 'success' ? messageStyles.success : messageStyles.error}`} style={{ marginTop: (index * 3) + "rem" }}>{i.message}</div>                            
+                    return <div key={index} className={`${messageStyles.notification} ${i.type === 'success' ? messageStyles.success : messageStyles.error}`} style={{ marginTop: (index * 3) + "rem" }}>{i.message}</div>                            
                 })
             }
         </div>        

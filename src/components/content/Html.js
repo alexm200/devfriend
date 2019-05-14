@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Title from './components/Title';
+import { utils } from '../../utils';
+import Template from './components/Template';
 
 class Html extends Component {
-  render() {
+
+  render() {    
     return (
-      <div>
-        <Title text="Html"></Title>         
-      </div>
+      <Template category={utils.Category.Html}></Template>
     );
   }
 }

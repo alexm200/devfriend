@@ -20,7 +20,7 @@ class Template extends Component {
         <div className="row">
           {
             this.props.cards.map((i)=> {
-              return <Card key={i._id} id={i._id} title={i.title} text={i.text}></Card>              
+              return <Card key={i._id} card={i}></Card>
             })
           }
         </div>

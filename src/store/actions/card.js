@@ -6,6 +6,8 @@ export const cardActions = {
     UPDATE_CARDS                       : '[cards] Update',
     ADD_CARD                           : '[cards] Add',
     REMOVE_CARD                        : '[cards] Remove',
+    UPDATE_CARD_REQUEST                : '[card] Update Request',
+    UPDATE_CARD                        : '[card] Update',
 
     getCardsRequest : (user_id, category) => ({
         type    : cardActions.GET_CARDS_REQUEST,
@@ -22,24 +24,26 @@ export const cardActions = {
         }
     }),
 
-    createCardRequest : (user_id, category, title, text) => ({
+    createCardRequest : (user_id, category, title, text, date_created) => ({
         type        : cardActions.CREATE_CARD_REQUEST,
         payload: { 
-            user_id    : user_id, 
-            category   : category,
-            title      : title,
-            text       : text
+            user_id         : user_id, 
+            category        : category,
+            title           : title,
+            text            : text,
+            date_created    : date_created
         }
     }),
     
-    addCard : (_id, user_id, category, title, text) => ({
+    addCard : (_id, user_id, category, title, text, date_created) => ({
         type        : cardActions.ADD_CARD,
         payload: {
-            _id        : _id,
-            user_id    : user_id, 
-            category   : category,
-            title      : title,
-            text       : text
+            _id             : _id,
+            user_id         : user_id, 
+            category        : category,
+            title           : title,
+            text            : text,
+            date_created    : date_created
         }
     }),
 
@@ -54,6 +58,22 @@ export const cardActions = {
         type        : cardActions.REMOVE_CARD,
         payload: {
             _id        : _id            
+        }
+    }),
+
+    updateCardRequest : (_id, card) => ({
+        type    : cardActions.UPDATE_CARD_REQUEST,
+        payload : {
+            _id     : _id,
+            card    : card
+        }
+    }),
+
+    updateCard : (_id, card) => ({
+        type    : cardActions.UPDATE_CARD,
+        payload : {
+            _id     : _id,
+            card    : card
         }
     }),
 
