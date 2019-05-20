@@ -1,9 +1,9 @@
 export const cardActions = {
 
     GET_CARDS_REQUEST                  : '[cards] Get Request',
+    GET_CARDS                          : '[cards] Get',
     CREATE_CARD_REQUEST                : '[cards] Create Request',
-    DELETE_CARD_REQUEST                : '[cards] Delete Request',
-    UPDATE_CARDS                       : '[cards] Update',
+    DELETE_CARD_REQUEST                : '[cards] Delete Request',    
     ADD_CARD                           : '[cards] Add',
     REMOVE_CARD                        : '[cards] Remove',
     UPDATE_CARD_REQUEST                : '[card] Update Request',
@@ -17,8 +17,8 @@ export const cardActions = {
         }
     }),
 
-    updateCards : (cards) => ({
-        type    : cardActions.UPDATE_CARDS,
+    getCards : (cards) => ({
+        type    : cardActions.GET_CARDS,
         payload : {
             cards   : cards
         }

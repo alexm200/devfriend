@@ -18,10 +18,10 @@ export const cardMdl = [
             
             dispatch(showLoading());
             
-            sdk.getCards(action.payload.user_id, action.payload.category)
+            sdk.cards.get({ userId: action.payload.userId, category: action.payload.category })
             .then((data) => {        
                 
-                dispatch(cardActions.updateCards(data.cardsByCategory));                
+                dispatch(cardActions.getCards(data.cards));                
                 dispatch(hideLoading());  
                 
             })
@@ -44,12 +44,12 @@ export const cardMdl = [
             
             dispatch(showLoading());                    
 
-            sdk.createCard(action.payload.user_id, action.payload.category, action.payload.title, action.payload.text, action.payload.date_created)
+            sdk.cards.create(action.payload.userId, action.payload.category, action.payload.title, action.payload.text, action.payload.dateCreated)
             .then((data) => {
                 
-                const { _id, user_id, category, text, title, date_created } = data.createCard;                
+                const { _id, userId, category, text, title, dateCreated } = data.createCard;                
 
-                dispatch(cardActions.addCard(_id, user_id, category, title, text, date_created));
+                dispatch(cardActions.addCard(_id, userId, category, title, text, dateCreated));
                 dispatch(hideLoading());
                                 
             })
@@ -72,7 +72,7 @@ export const cardMdl = [
             
             dispatch(showLoading());
                         
-            sdk.deleteCard(action.payload._id)
+            sdk.cards.remove(action.payload._id)
             .then((data) => {
                 
                 const { _id } = data.deleteCard;
@@ -100,7 +100,7 @@ export const cardMdl = [
             
             dispatch(showLoading());
 
-            sdk.updateCard(action.payload._id, action.payload.card)
+            sdk.cards.update(action.payload._id, action.payload.card)
             .then((data) => {                                
                 dispatch(hideLoading());
             })

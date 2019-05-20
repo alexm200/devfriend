@@ -76,7 +76,7 @@ class Card extends Component {
                         </div>
                         <div className={contentStyles.created}>
                         {
-                            utils.getDateFormat(new Date(this.props.card.date_created))
+                            utils.getDateFormat(new Date(this.props.card.dateCreated))
                         }
                         </div>
                     </div>

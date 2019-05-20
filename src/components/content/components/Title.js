@@ -8,7 +8,7 @@ import { utils } from '../../../utils';
 class Title extends Component {
 
   btnAddCard_onClick = (e) => {
-    this.props.createCardRequest(utils.getUserId(), this.props.category, "", "", new Date());
+    this.props.createCardRequest(utils.getUserId(), this.props.category, "", "", Date.now());
   }
 
   render() {

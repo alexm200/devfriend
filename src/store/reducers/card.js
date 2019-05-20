@@ -7,7 +7,7 @@ export const cardReducer = (state, action) => {
 
     switch(action.type) {
 
-        case cardActions.UPDATE_CARDS:        
+        case cardActions.GET_CARDS:        
             return action.payload.cards;
 
         case cardActions.ADD_CARD:
