@@ -9,10 +9,10 @@ export const cardActions = {
     UPDATE_CARD_REQUEST                : '[card] Update Request',
     UPDATE_CARD                        : '[card] Update',
 
-    getCardsRequest : (user_id, category) => ({
+    getCardsRequest : (userId, category) => ({
         type    : cardActions.GET_CARDS_REQUEST,
         payload : {
-            user_id     : user_id,
+            userId     : userId,
             category    : category
         }
     }),
@@ -24,26 +24,26 @@ export const cardActions = {
         }
     }),
 
-    createCardRequest : (user_id, category, title, text, date_created) => ({
+    createCardRequest : (userId, category, title, text, dateCreated) => ({
         type        : cardActions.CREATE_CARD_REQUEST,
         payload: { 
-            user_id         : user_id, 
+            userId         : userId,
             category        : category,
             title           : title,
             text            : text,
-            date_created    : date_created
+            dateCreated    : dateCreated
         }
     }),
     
-    addCard : (_id, user_id, category, title, text, date_created) => ({
+    addCard : (_id, userId, category, title, text, dateCreated) => ({
         type        : cardActions.ADD_CARD,
         payload: {
             _id             : _id,
-            user_id         : user_id, 
+            userId         : userId, 
             category        : category,
             title           : title,
             text            : text,
-            date_created    : date_created
+            dateCreated    : dateCreated
         }
     }),
 

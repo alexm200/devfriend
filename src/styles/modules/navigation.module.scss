@@ -122,3 +122,19 @@ $navigation-icon: $white-30;
         }
     }
 }
+
+.addBtn {
+    background-color: #224abe;
+    padding: 0.3rem 1rem;
+    color: #fff;
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;    
+    text-align:center;
+    svg {
+        color:#fff;
+    }
+    &:hover,
+    &:active {
+        background-color: #4e73df  ;
+    }
+}

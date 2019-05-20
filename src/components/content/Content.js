@@ -11,6 +11,7 @@ import Login from './Login';
 import Register from './Register';
 import { PrivateRoute } from './components/PrivateRoute';
 import Notification from './components/Notification';
+import Menu from './Menu';
 
 class Content extends Component {
   render() {
@@ -26,6 +27,7 @@ class Content extends Component {
               <PrivateRoute path="/css" component={Css} />
               <PrivateRoute path="/html" component={Html} />
               <PrivateRoute path="/sql" component={Sql} />
+              <PrivateRoute path="/menu" component={Menu} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
             </Switch>

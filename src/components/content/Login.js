@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styles from '../../styles/modules/login.module.scss';
+import loginStyles from '../../styles/modules/login.module.scss';
+import sharedStyles from '../../styles/modules/shared.module.scss';
 import { NavLink } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
@@ -47,7 +48,7 @@ class Login extends Component {
     render() {
         return (
             <div className="row justify-content-center">                
-                <div className={styles.wrap}>
+                <div className={loginStyles.wrap}>
                     <div className="text-center">
                         <h1 className="h4 mb-4">Welcome Back!</h1>
                     </div>
@@ -64,9 +65,9 @@ class Login extends Component {
                         </div>
                         <div style={{display: this.props.user.loginPasswordError === '' ? "none" : "block"}} className="form-group error error-offset animated--grow-in">
                             {this.props.user.loginPasswordError}
-                        </div>                        
+                        </div>
                         <div className="form-group">
-                            <div className={`${styles.checkboxLabel} custom-control custom-checkbox small`} onClick={this.divRememberMe_onClick}>
+                            <div className={`${sharedStyles.checkboxLabel} custom-control custom-checkbox small`} onClick={this.divRememberMe_onClick}>
                                 <input checked={this.props.ui.isLoginRememberMeChecked} onChange={this.chbxRememberMe_onChange} ref={(node) => { this.chbxRememberMe = node }} type="checkbox" className="custom-control-input" />
                                 <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
                             </div>

@@ -2,6 +2,7 @@ import { userActions } from "../actions/user";
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import DevFriendSdk from '../../sdk/devfriend.sdk.js';
 import config from '../../config.js';
+import { menuItemActions } from "../actions/menuItem";
 
 const sdk = new DevFriendSdk(config);
 
@@ -36,17 +37,17 @@ export const userMdl = [
             dispatch(showLoading());
             
             // Check username already exists
-            sdk.getUserByUsername(action.payload.username)
+            sdk.users.get({ username: action.payload.username })
             .then((data) => {
 
-                if (data.userByUsername != null){
+                if (data.users.length > 0){
                     dispatch(userActions.updateRegistrationMessage("Username already exists!", "error"));
                     dispatch(hideLoading());
                 }
                 else {
                     
                     // Create user
-                    sdk.createUser(action.payload.username, action.payload.password)
+                    sdk.users.create(action.payload.username, action.payload.password, false)
                     .then((data) => {
 
                         dispatch(userActions.updateRegistrationUsernameError(""));
@@ -115,7 +116,7 @@ export const userMdl = [
             dispatch(showLoading());
 
             // Get user
-            sdk.getUser(action.payload.username, action.payload.password)
+            sdk.users.get({ username: action.payload.username, password: action.payload.password })
             .then((data) => {
                 
                 dispatch(userActions.updateLoginUsernameError(""));
@@ -124,14 +125,15 @@ export const userMdl = [
                 dispatch(userActions.updateLoginPassword(""));
                 dispatch(userActions.updateLoginMessage(""));
                 
-                if (data.user != null){                
+                if (data.users.length > 0){
                     if (action.payload.rememberMe){
-                        localStorage.setItem("user", data.user._id);
+                        localStorage.setItem("user", data.users[0]._id);
                     }
                     else{
-                        sessionStorage.setItem("user", data.user._id);
-                    }
+                        sessionStorage.setItem("user", data.users[0]._id);
+                    }                    
                     dispatch(userActions.loginUser());
+                    dispatch(menuItemActions.getMenuItemsRequest(data.users[0]._id));
                 }
                 else{
                     dispatch(userActions.updateLoginMessage("Incorrect Username/Password!", "error"));

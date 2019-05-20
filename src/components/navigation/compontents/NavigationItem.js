@@ -8,8 +8,8 @@ class NavigationItem extends Component {
     return (
         
             <li className="nav-item">
-                <NavLink exact activeClassName={styles.active} className={styles.navLink} to={this.props.navigateUrl}>
-                    <FontAwesomeIcon icon={this.props.icon} />
+                <NavLink exact activeClassName={styles.active} className={`${styles.navLink} ${this.props.class}`} to={this.props.navigateUrl}>
+                    {this.props.icon !== "" && <FontAwesomeIcon icon={this.props.icon} />}
                     <span>{this.props.text}</span>
                 </NavLink>
             </li>
