@@ -10,8 +10,7 @@ import MenuItem from './components/MenuItem';
 class Menu extends Component {
 
   btnAddItem_onClick = () => {
-    let maxOrder = this.props.menuItems.length == 0 ? 0 : Math.max.apply(Math, [...this.props.menuItems].map(function(i) { return i.order; }));
-    console.log(maxOrder);
+    let maxOrder = this.props.menuItems.length === 0 ? 0 : Math.max.apply(Math, [...this.props.menuItems].map(function(i) { return i.order; }));    
     this.props.createMenuItemRequest(utils.getUserId(), "", false, false, "", maxOrder + 1, Date.now());
   }
 
