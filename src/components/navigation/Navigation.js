@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Logo from './compontents/Logo';
-import NavigationItem from './compontents/NavigationItem';
+import Logo from './components/Logo';
+import NavigationItem from './components/NavigationItem';
 import navStyles from '../../styles/modules/navigation.module.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 class Navigation extends Component {
 
   render() {  
+    console.log(this.props);
     return (
         <ul className={[navStyles.sidebar, "navbar-nav"].join(" ")}>
             <Logo></Logo>

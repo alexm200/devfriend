@@ -9,6 +9,7 @@ import { uiActions } from '../../store/actions/ui';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { userActions } from '../../store/actions/user';
+import PropTypes from 'prop-types';
 
 class TopBar extends Component {
 
@@ -47,9 +48,9 @@ class TopBar extends Component {
       nextProps.history.push("/login");
       this.logoutUserRequest = false;
     }
-}
+  }
 
-  render() {
+  render() {    
       return (
         this.props.user.isLoggedIn && <nav ref={(node) => { this.wrapperRef = node }} className={`${styles.topBar} navbar navbar-expand`}>
               <ToggleButton></ToggleButton>            

@@ -20,7 +20,7 @@ export const userReducer = (state, action) => {
             return action.payload;
 
         case userActions.LOGIN_USER:
-            return { ...state, username: action.payload.username, userId: action.payload.userId, isLoggedIn: true, isLoggedOut: true };
+            return { ...state, username: action.payload.username, userId: action.payload.userId, isLoggedIn: true, isLoggedOut: false };
 
         case userActions.LOGOUT_USER:
             return { ...state, username: '', userId: '', isLoggedOut: true, isLoggedIn: false };
