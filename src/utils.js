@@ -1,11 +1,8 @@
 
-export const utils = {
-    Category : Object.freeze({"Javascript":"Javascript", "Css":"Css", "Html":"Html", "Sql":"Sql"}),
-    isUserLoggedIn : () => {
-        return localStorage.getItem('user') || sessionStorage.getItem('user');    
-    },
-    getUserId : () => {
-        return localStorage.getItem('user') || sessionStorage.getItem('user');    
+export const utils = {    
+    getUserFromStorage : () => {
+        const user = localStorage.getItem('user') || sessionStorage.getItem('user');        
+        return user == null ? null : JSON.parse(user);        
     },
     getDateFormat : (date) => {
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

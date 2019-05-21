@@ -11,7 +11,7 @@ class Menu extends Component {
 
   btnAddItem_onClick = () => {
     let maxOrder = this.props.menuItems.length === 0 ? 0 : Math.max.apply(Math, [...this.props.menuItems].map(function(i) { return i.order; }));    
-    this.props.createMenuItemRequest(utils.getUserId(), "", false, false, "", maxOrder + 1, Date.now());
+    this.props.createMenuItemRequest(this.props.user.userId, "", false, false, "", maxOrder + 1, Date.now());
   }
 
   render() {
@@ -38,6 +38,6 @@ class Menu extends Component {
 }
 
 export default connect(
-  state => { return { ui: state.ui, menuItems: state.menuItem }},
+  state => { return { user: state.user, ui: state.ui, menuItems: state.menuItem }},
   dispatch => bindActionCreators(Object.assign({}, uiActions, menuItemActions), dispatch)    
 )(Menu);

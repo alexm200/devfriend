@@ -53,18 +53,18 @@ class Login extends Component {
                         <h1 className="h4 mb-4">Welcome Back!</h1>
                     </div>
                     <div className="user">
-                        <Message message={this.props.user.loginMessage} type={this.props.user.loginMessageType}></Message>
+                        <Message message={this.props.ui.loginMessage} type={this.props.ui.loginMessageType}></Message>
                         <div className="form-group">
                             <input value={this.props.user.loginUsername} onChange={this.txtUsername_onChange} type="text" className="form-control form-control-user" placeholder="Enter Username..." />
                         </div>
-                        <div style={{display: this.props.user.loginUsernameError === '' ? "none" : "block"}} className="form-group error error-offset animated--grow-in">
-                            {this.props.user.loginUsernameError}
+                        <div style={{display: this.props.ui.loginUsernameError === '' ? "none" : "block"}} className="form-group error error-offset animated--grow-in">
+                            {this.props.ui.loginUsernameError}
                         </div>
                         <div className="form-group">
                             <input value={this.props.user.loginPassword} onChange={this.txtPassword_onChange} type="password" className="form-control form-control-user" placeholder="Password" />
                         </div>
-                        <div style={{display: this.props.user.loginPasswordError === '' ? "none" : "block"}} className="form-group error error-offset animated--grow-in">
-                            {this.props.user.loginPasswordError}
+                        <div style={{display: this.props.ui.loginPasswordError === '' ? "none" : "block"}} className="form-group error error-offset animated--grow-in">
+                            {this.props.ui.loginPasswordError}
                         </div>
                         <div className="form-group">
                             <div className={`${sharedStyles.checkboxLabel} custom-control custom-checkbox small`} onClick={this.divRememberMe_onClick}>

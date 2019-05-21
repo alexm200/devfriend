@@ -23,9 +23,10 @@ class App extends Component {
   constructor(props){
     super(props);
     if (window.performance) {
-      if (performance.navigation.type === 1 && utils.getUserId() != null) {
-        props.loginUser();
-        props.getMenuItemsRequest(utils.getUserId());
+      const user = utils.getUserFromStorage();      
+      if (performance.navigation.type === 1 && user != null) {
+        props.loginUser(user.userId, user.username);
+        props.getMenuItemsRequest(user.userId);
       }
     }
   }

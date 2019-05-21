@@ -9,7 +9,6 @@ import { uiActions } from '../../store/actions/ui';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { userActions } from '../../store/actions/user';
-import { utils } from '../../utils';
 
 class TopBar extends Component {
 
@@ -52,7 +51,7 @@ class TopBar extends Component {
 
   render() {
       return (
-        utils.isUserLoggedIn() && <nav ref={(node) => { this.wrapperRef = node }} className={`${styles.topBar} navbar navbar-expand`}>
+        this.props.user.isLoggedIn && <nav ref={(node) => { this.wrapperRef = node }} className={`${styles.topBar} navbar navbar-expand`}>
               <ToggleButton></ToggleButton>            
               <SearchForm></SearchForm>
   
@@ -65,7 +64,7 @@ class TopBar extends Component {
                 />                              
                 <TopBarItem 
                   icon="user"
-                  label="alex"
+                  label={this.props.user.username}
                   isOpen={this.props.ui.isAccountOptionsOpen}
                   topBarItem_onClick={this.topBarItem_onClick}
                   dropdownItems={[<LogoutButton btnLogout_onClick={this.btnLogout_onClick} />]}

@@ -3,6 +3,7 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import DevFriendSdk from '../../sdk/devfriend.sdk.js';
 import config from '../../config.js';
 import { menuItemActions } from "../actions/menuItem";
+import { uiActions } from "../actions/ui";
 
 const sdk = new DevFriendSdk(config);
 
@@ -20,13 +21,13 @@ export const userMdl = [
             
             // Check empty username
             if (action.payload.username.trim() === ''){
-                dispatch(userActions.updateRegistrationUsernameError("Can not be empty!"));
+                dispatch(uiActions.updateRegistrationUsernameError("Can not be empty!"));
                 isError = true;                
             }
 
             // Check empty password
             if (action.payload.password.trim() === ''){
-                dispatch(userActions.updateRegistrationPasswordError("Can not be empty!"));
+                dispatch(uiActions.updateRegistrationPasswordError("Can not be empty!"));
                 isError = true;
             }
 
@@ -41,7 +42,7 @@ export const userMdl = [
             .then((data) => {
 
                 if (data.users.length > 0){
-                    dispatch(userActions.updateRegistrationMessage("Username already exists!", "error"));
+                    dispatch(uiActions.updateRegistrationMessage("Username already exists!", "error"));
                     dispatch(hideLoading());
                 }
                 else {
@@ -50,17 +51,21 @@ export const userMdl = [
                     sdk.users.create(action.payload.username, action.payload.password, false)
                     .then((data) => {
 
-                        dispatch(userActions.updateRegistrationUsernameError(""));
-                        dispatch(userActions.updateRegistrationPasswordError(""));
+                        dispatch(uiActions.updateRegistrationUsernameError(""));
+                        dispatch(uiActions.updateRegistrationPasswordError(""));
                         dispatch(userActions.updateRegistrationUsername(""));
                         dispatch(userActions.updateRegistrationPassword(""));
-                        dispatch(userActions.updateRegistrationMessage(`You are registered! {LoginLink} to continue!`, "success"));
+                        
+                        const { _id, username } = data.createUser;
+                        sessionStorage.setItem("user", JSON.stringify({ userId: _id, username: username }));
+                        dispatch(userActions.loginUser(_id, username));                        
+                        
                         dispatch(hideLoading());  
 
                     })
                     .catch(() => {
 
-                        dispatch(userActions.updateRegistrationMessage("Unexpected error occured!", "error"));
+                        dispatch(uiActions.updateRegistrationMessage("Unexpected error occured!", "error"));
                         dispatch(hideLoading());
 
                     });                    
@@ -75,10 +80,10 @@ export const userMdl = [
 
         }
         else if (action.type === userActions.UPDATE_REGISTRATION_USERNAME) {
-            dispatch(userActions.updateRegistrationUsernameError(""));
+            dispatch(uiActions.updateRegistrationUsernameError(""));
         }
         else if (action.type === userActions.UPDATE_REGISTRATION_PASSWORD) {
-            dispatch(userActions.updateRegistrationPasswordError(""));
+            dispatch(uiActions.updateRegistrationPasswordError(""));
         }   
 
     },
@@ -91,21 +96,21 @@ export const userMdl = [
 
         if (action.type === userActions.LOGIN_USER_REQUEST) {
             
-            dispatch(userActions.updateLoginMessage(""));
-            dispatch(userActions.updateLoginUsernameError(""));
-            dispatch(userActions.updateLoginPasswordError(""));
+            dispatch(uiActions.updateLoginMessage(""));
+            dispatch(uiActions.updateLoginUsernameError(""));
+            dispatch(uiActions.updateLoginPasswordError(""));
 
             let isError = false;
             
             // Check empty username
             if (action.payload.username.trim() === ''){
-                dispatch(userActions.updateLoginUsernameError("Can not be empty!"));
+                dispatch(uiActions.updateLoginUsernameError("Can not be empty!"));
                 isError = true;                
             }
 
             // Check empty password
             if (action.payload.password.trim() === ''){
-                dispatch(userActions.updateLoginPasswordError("Can not be empty!"));
+                dispatch(uiActions.updateLoginPasswordError("Can not be empty!"));
                 isError = true;
             }
 
@@ -119,42 +124,42 @@ export const userMdl = [
             sdk.users.get({ username: action.payload.username, password: action.payload.password })
             .then((data) => {
                 
-                dispatch(userActions.updateLoginUsernameError(""));
-                dispatch(userActions.updateLoginPasswordError(""));
+                dispatch(uiActions.updateLoginUsernameError(""));
+                dispatch(uiActions.updateLoginPasswordError(""));
                 dispatch(userActions.updateLoginUsername(""));
                 dispatch(userActions.updateLoginPassword(""));
-                dispatch(userActions.updateLoginMessage(""));
+                dispatch(uiActions.updateLoginMessage(""));
                 
-                if (data.users.length > 0){
-                    if (action.payload.rememberMe){
-                        localStorage.setItem("user", data.users[0]._id);
+                if (data.users.length > 0) {
+                    const { _id, username } = data.users[0];
+                    if (action.payload.rememberMe) {
+                        localStorage.setItem("user", JSON.stringify({ userId: _id, username: username }));
                     }
-                    else{
-                        sessionStorage.setItem("user", data.users[0]._id);
+                    else {
+                        sessionStorage.setItem("user", JSON.stringify({ userId: _id, username: username }));
                     }                    
-                    dispatch(userActions.loginUser());
-                    dispatch(menuItemActions.getMenuItemsRequest(data.users[0]._id));
+                    dispatch(userActions.loginUser(_id, username));
+                    dispatch(menuItemActions.getMenuItemsRequest(_id));
                 }
                 else{
-                    dispatch(userActions.updateLoginMessage("Incorrect Username/Password!", "error"));
+                    dispatch(uiActions.updateLoginMessage("Incorrect Username/Password!", "error"));
                 }
                 
                 dispatch(hideLoading()); 
 
             })
-            .catch(() => {
-
-                dispatch(userActions.updateLoginMessage("Unexpected error occured!", "error"));
+            .catch(() => {                
+                dispatch(uiActions.updateLoginMessage("Unexpected error occured!", "error"));
                 dispatch(hideLoading()); 
 
             })
             
         }
         else if (action.type === userActions.UPDATE_LOGIN_USERNAME) {            
-            dispatch(userActions.updateLoginUsernameError(""));
+            dispatch(uiActions.updateLoginUsernameError(""));
         }
         else if (action.type === userActions.UPDATE_LOGIN_PASSWORD) {            
-            dispatch(userActions.updateLoginPasswordError(""));
+            dispatch(uiActions.updateLoginPasswordError(""));
         }   
 
     },

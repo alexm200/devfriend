@@ -3,7 +3,15 @@ import { uiActions } from "../actions/ui";
 const initialState = {         
     isAccountOptionsOpen: false,
     isLoginRememberMeChecked: false,
-    notifications: []
+    notifications: [],
+    registrationUsernameError: '', 
+    registrationPasswordError: '',
+    registrationMessage: '',
+    registrationMessageType: '',
+    loginUsernameError: '',
+    loginPasswordError: '',
+    loginMessage: '',
+    loginMessageType: '',    
 };
 
 export const uiReducer = (state, action) => {
@@ -34,6 +42,24 @@ export const uiReducer = (state, action) => {
                     ...state.notifications.slice(0, state.notifications.length - 1)                     
                 ] 
             };
+
+        case uiActions.UPDATE_REGISTRATION_USERNAME_ERROR:
+            return { ...state, registrationUsernameError: action.payload.error };            
+
+        case uiActions.UPDATE_REGISTRATION_PASSWORD_ERROR:
+            return { ...state, registrationPasswordError: action.payload.error };    
+
+        case uiActions.UPDATE_REGISTRATION_MESSAGE:
+            return { ...state, registrationMessage: action.payload.message, registrationMessageType: action.payload.type };   
+
+        case uiActions.UPDATE_LOGIN_USERNAME_ERROR:
+            return { ...state, loginUsernameError: action.payload.error };
+
+        case uiActions.UPDATE_LOGIN_PASSWORD_ERROR:
+            return { ...state, loginPasswordError: action.payload.error }; 
+
+        case uiActions.UPDATE_LOGIN_MESSAGE:
+            return { ...state, loginMessage: action.payload.message, loginMessageType: action.payload.type }; 
 
         default:
             return state;

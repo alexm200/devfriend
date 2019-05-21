@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-import Title from '../components/Title';
 import Card from '../components/Card';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { cardActions } from '../../../store/actions/card';
-import { utils } from '../../../utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Template extends Component {
 
   componentDidMount(){
-    this.props.getCardsRequest(utils.getUserId(), this.props.category);
+    this.props.getCards([]);
+    this.props.getCardsRequest(this.props.user.userId, this.props.location.pathname.slice(1));
   }
 
-  render() {    
+  btnAddCard_onClick = (e) => {
+    this.props.createCardRequest(this.props.user.userId, this.props.location.pathname.slice(1), "", "", Date.now());
+  }
+
+  render() {
     return (
-      <div>
-        <Title category={this.props.category}></Title>
+      <div>        
+        <div className="d-sm-flex align-items-center justify-content-between mb-4">            
+            <button onClick={this.btnAddCard_onClick} className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+              <FontAwesomeIcon icon="plus"></FontAwesomeIcon> Add Card
+            </button>
+        </div>
 
         <div className="row">
           {
@@ -30,6 +38,6 @@ class Template extends Component {
 }
 
 export default connect(
-  state => { return { cards: state.card }},
+  state => { return { user: state.user, cards: state.card }},
   dispatch => bindActionCreators(cardActions, dispatch)    
 )(Template);

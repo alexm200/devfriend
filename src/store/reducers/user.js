@@ -1,18 +1,12 @@
 import { userActions } from "../actions/user";
 
-const initialState = {         
-    registrationUsernameError: '', 
-    registrationPasswordError: '',
+const initialState = {                 
     registrationUsername: '',
-    registrationPassword: '', 
-    registrationMessage: '',
-    registrationMessageType: '',
+    registrationPassword: '',         
     loginUsername: '',
     loginPassword: '',
-    loginUsernameError: '',
-    loginPasswordError: '',
-    loginMessage: '',
-    loginMessageType: '',
+    userId: '',
+    username: '',
     isLoggedIn: false,
     isLoggedOut: false
 };
@@ -26,22 +20,13 @@ export const userReducer = (state, action) => {
             return action.payload;
 
         case userActions.LOGIN_USER:
-            return { ...state, isLoggedIn: true, isLoggedOut: true };
+            return { ...state, username: action.payload.username, userId: action.payload.userId, isLoggedIn: true, isLoggedOut: true };
 
         case userActions.LOGOUT_USER:
-            return { ...state, isLoggedOut: true, isLoggedIn: false };
+            return { ...state, username: '', userId: '', isLoggedOut: true, isLoggedIn: false };
 
         case userActions.UPDATE_REGISTRATION_USERNAME:
             return { ...state, registrationUsername: action.payload.username };
-
-        case userActions.UPDATE_REGISTRATION_PASSWORD_ERROR:
-            return { ...state, registrationPasswordError: action.payload.error };            
-
-        case userActions.UPDATE_REGISTRATION_USERNAME_ERROR:
-            return { ...state, registrationUsernameError: action.payload.error };
-
-        case userActions.UPDATE_REGISTRATION_MESSAGE:
-            return { ...state, registrationMessage: action.payload.message, registrationMessageType: action.payload.type };             
 
         case userActions.UPDATE_REGISTRATION_PASSWORD:
             return { ...state, registrationPassword: action.payload.password };
@@ -50,16 +35,7 @@ export const userReducer = (state, action) => {
             return { ...state, loginUsername: action.payload.username };
 
         case userActions.UPDATE_LOGIN_PASSWORD:
-            return { ...state, loginPassword: action.payload.password };
-
-        case userActions.UPDATE_LOGIN_USERNAME_ERROR:
-            return { ...state, loginUsernameError: action.payload.error };
-
-        case userActions.UPDATE_LOGIN_PASSWORD_ERROR:
-            return { ...state, loginPasswordError: action.payload.error }; 
-
-        case userActions.UPDATE_LOGIN_MESSAGE:
-            return { ...state, loginMessage: action.payload.message, loginMessageType: action.payload.type };  
+            return { ...state, loginPassword: action.payload.password }; 
 
         default:
             return state;
