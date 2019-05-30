@@ -10,8 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 
 class Navigation extends Component {
 
-  render() {  
-    console.log(this.props);
+  render() {      
     return (
         <ul className={[navStyles.sidebar, "navbar-nav"].join(" ")}>
             <Logo></Logo>
@@ -30,7 +29,7 @@ class Navigation extends Component {
                         <div className={navStyles.heading}>{i.text}</div>
                         :
                         <div>
-                          <NavigationItem icon={Object.keys(library.definitions.fab).includes(i.icon) ? ['fab', i.icon] : i.icon} text={i.text} navigateUrl={`/_${i.text}`}></NavigationItem>
+                          <NavigationItem icon={Object.keys(library.definitions.fab).includes(i.icon) ? ['fab', i.icon] : i.icon} text={i.text} navigateUrl={`/${i.text}`}></NavigationItem>
                           {i.hasDivider && <hr className={navStyles.divider}></hr>}
                         </div>
                       }                    

@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
 
-      <div className="d-flex">      
+      <div className="d-flex">
         <LoadingBar className="loading-bar" />        
         <Navigation></Navigation>
         <Content></Content>        

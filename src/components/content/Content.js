@@ -26,13 +26,13 @@ class Content extends Component {
               
               {
                 this.props.menuItems.map((i, index) => {
-                  return <PrivateRoute key={index} path={`/_${i.text}`} category={i.text} component={Template} />
+                  return <PrivateRoute key={index} exact path={`/${i.text}`} category={i.text} component={Template} />
                 })
               }
 
-              <PrivateRoute path="/menu" component={Menu} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
+              <PrivateRoute exact path="/menu" component={Menu} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
             </Switch>
           </div>          
         </div>        
